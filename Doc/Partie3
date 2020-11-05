@@ -1,0 +1,27 @@
+def evaluation(selected,cache):         #Créer une fonction evaluation
+
+    WellPut = 0                         #Variable bien dit
+
+    Misplaced = 0                       #Variable mal placé
+
+    copySelected,copyCache = list(selected),list(cache) #créer des listes
+
+    for i in range(len(cache)):         #Pour i pour tant de mot dans cache
+
+        if copySelected[i] == copyCache[i]:     #Si liste select n°x et liste cache n°x sont égaux
+
+            WellPut += 1                  #Ajouter +1 à WellPut
+
+            copySelected[i],copyCache[i] = -1,-1        #Enlever  -1 à chaque liste
+
+    for i in range(len(cache)):             #Pour i pour tant de mot dans cache
+
+        for j in range(len(cache)):         #Pour j pour tant de mot dans cache
+
+            if copySelected[i] == copyCache[j] and copySelected[i] != -1:   #Si liste select n°x et liste cache n°x sont égaux et liste select n°x -1
+
+                Misplaced += 1              #Ajouter +1 à Misplaced
+
+                copySelected[i],copyCache[j] = -1,-1    #Enlever  -1 à chaque liste
+
+    return WellPut,Misplaced                #Retourner les résultat de WellPut et Misplaced
